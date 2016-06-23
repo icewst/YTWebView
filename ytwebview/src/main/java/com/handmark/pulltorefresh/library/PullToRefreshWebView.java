@@ -74,9 +74,7 @@ public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
     protected WebView createRefreshableView(Context context, AttributeSet attrs) {
         WebView webView;
         if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-            // webView = new InternalWebViewSDK9(context, attrs);
-            InternalWebViewSDK9 w9 = (InternalWebViewSDK9) LayoutInflater.from(context).inflate(
-                    R.layout.pull_to_refresh_webview_sdk9, null);
+            InternalWebViewSDK9 w9 = new InternalWebViewSDK9(context, attrs);
             w9.setPullView(this);
             webView = w9;
         } else {

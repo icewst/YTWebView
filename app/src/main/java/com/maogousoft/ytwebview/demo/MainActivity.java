@@ -16,6 +16,6 @@ public class MainActivity extends Activity {
 
         ytWebView = (YTWebView) findViewById(R.id.ytWebView);
 
-        ytWebView.loadUrl("baidu.com");
+        ytWebView.loadUrl("https://www.baidu.com");
     }
 }
