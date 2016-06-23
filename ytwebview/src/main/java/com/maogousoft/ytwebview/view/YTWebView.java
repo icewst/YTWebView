@@ -161,13 +161,6 @@ public class YTWebView extends PullToRefreshWebView {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                if (isGetTitle) {
-                    // 获取html的title
-                    YTWebView.this.loadUrl("javascript:window." + JS_OBJ_NAME + ".getTitleByHtml(document.title)");
-                }
-
-                // loadDialog.dismiss();
-
                 if (mPageFinishedListener != null) {
                     // 从Web里面反调用过来的，他是在非UI线程
                     act.runOnUiThread(new Runnable() {
@@ -179,16 +172,10 @@ public class YTWebView extends PullToRefreshWebView {
                     });
                 }
 
-                // 显示所有源码
-                // YTWebView.this.loadUrl("javascript:window.jsObj.showSource('<head>'+"
-                // +
-                // "document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-
             }
 
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                // loadDialog.show();
 
                 if (mPageStartedListener != null) {
                     // 从Web里面反调用过来的，他是在非UI线程
@@ -287,25 +274,6 @@ public class YTWebView extends PullToRefreshWebView {
         }
     }
 
-
-    /**
-     * 设置是否获取标题，默认为true
-     *
-     * @param isGetTitle 是否获取标题，默认为true
-     */
-    public void setGetTitle(boolean isGetTitle) {
-        this.isGetTitle = isGetTitle;
-    }
-
-    /**
-     * 屏蔽返回，执行backJS这个js函数
-     *
-     * @return
-     */
-    public String getBackJS() {
-        return backJS;
-    }
-
     /**
      * 显示Toast
      *
@@ -368,29 +336,6 @@ public class YTWebView extends PullToRefreshWebView {
 
     public class MyJSObj {
 
-
-        /**
-         * 锁定后退键
-         */
-
-        @JavascriptInterface
-        public void lockBackBT() {
-            isLockBackKey = true;
-        }
-
-        /**
-         * 解锁后退键
-         */
-
-        @JavascriptInterface
-        public void unlockBackBT() {
-            isLockBackKey = false;
-        }
-
-
-        /**
-         * 后退
-         */
 
         @JavascriptInterface
         public void goBackBT() {
@@ -578,25 +523,6 @@ public class YTWebView extends PullToRefreshWebView {
             }
         }
 
-        // webview对后退按钮（iOS）或退回键（Android）的控制，跟lockBackBtn和unlockBackBtn有点像。
-        //
-        // doFuncBackBtn(value)：告诉设备，从现在开始，所有点击后退按钮（iOS）或退回键（Android）动作将会去执行webview中名为value的js方法，而不是回退
-        //
-        // undoFuncBackBtn()：告诉设备，从现在开始，点击后退按钮（iOS）或退回键（Android）动作恢复到正常情况，
-        // 此方法无参数(我想请问这个方法是否可以和unlockBackBtn方法通用？也就是unlockBackBtn是否也可以实现这个功能,我的想法是如果执行unlockBackBtn时会把所有对后退键控制的声明都去掉)
-
-        @JavascriptInterface
-        public void doFuncBackBtn(String value) {
-            Log.i(TAG, "调用doFuncBackBtn，参数value:" + value);
-            backJS = value;
-        }
-
-        @JavascriptInterface
-        public void undoFuncBackBtn() {
-            Log.i(TAG, "调用undoFuncBackBtn");
-            backJS = null;
-        }
-
 
         @JavascriptInterface
         public void backWithJS(String jsname, String value) {
@@ -608,17 +534,6 @@ public class YTWebView extends PullToRefreshWebView {
             act.finish();
         }
 
-
-        // /**
-        // * 显示所有源码
-        // *
-        // * @param html
-        // */
-        // @JavascriptInterface
-        // public void showSource(String html)
-        // {
-        // Log.d("HTML", html);
-        // }
 
         /**
          * 插入js函数，获取HTML的title
