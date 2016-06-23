@@ -17,7 +17,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.LayoutInflater;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -58,26 +57,6 @@ public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
 
     public PullToRefreshWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        /**
-         * Added so that by default, Pull-to-Refresh refreshes the page
-         */
-        setOnRefreshListener(defaultOnRefreshListener);
-        mRefreshableView.setWebChromeClient(defaultWebChromeClient);
-    }
-
-    public PullToRefreshWebView(Context context, Mode mode) {
-        super(context, mode);
-
-        /**
-         * Added so that by default, Pull-to-Refresh refreshes the page
-         */
-        setOnRefreshListener(defaultOnRefreshListener);
-        mRefreshableView.setWebChromeClient(defaultWebChromeClient);
-    }
-
-    public PullToRefreshWebView(Context context, Mode mode, AnimationStyle style) {
-        super(context, mode, style);
 
         /**
          * Added so that by default, Pull-to-Refresh refreshes the page
