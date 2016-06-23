@@ -3,10 +3,11 @@ package com.handmark.pulltorefresh.library;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.webkit.WebView;
+
+import com.maogousoft.ytwebview.view.SafeWebView;
 
 @TargetApi(9)
-public final class InternalWebViewSDK9 extends WebView {
+public final class InternalWebViewSDK9 extends SafeWebView {
 
     // WebView doesn't always scroll back to it's edge so we add some
     // fuzziness
