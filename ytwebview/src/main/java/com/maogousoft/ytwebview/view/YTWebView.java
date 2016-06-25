@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.DatePicker;
@@ -158,22 +159,6 @@ public class YTWebView extends PullToRefreshWebView {
         // 设置加载提示条在加载完成前显示，完成后不显示
         webView.setWebViewClient(new WebViewClient() {
 
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-                if (mPageFinishedListener != null) {
-                    // 从Web里面反调用过来的，他是在非UI线程
-                    act.runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            mPageFinishedListener.finished();
-                        }
-                    });
-                }
-
-            }
-
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
 
@@ -189,6 +174,24 @@ public class YTWebView extends PullToRefreshWebView {
                 }
             }
 
+        });
+
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+
+                if (mPageFinishedListener != null) {
+                    // 从Web里面反调用过来的，他是在非UI线程
+                    act.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            mPageFinishedListener.finished();
+                        }
+                    });
+                }
+            }
         });
 
         webView.setDownloadListener(new DownloadListener() {
@@ -302,6 +305,12 @@ public class YTWebView extends PullToRefreshWebView {
         void finished();
     }
 
+    /**
+     * 设置监听，当webview加载完成后 （因为WebView自己的onPageFinish不靠谱，在4.4以上经常不调用，或者无故调用。所以内部实现
+     * 替换为 onProgressChanged 100的时候，就认为加载完成）
+     *
+     * @param listener
+     */
     public void setOnPageFinishedListener(OnPageFinishedListener listener) {
         mPageFinishedListener = listener;
     }
