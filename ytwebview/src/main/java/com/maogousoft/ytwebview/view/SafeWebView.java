@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.webkit.JsPromptResult;
 import android.webkit.WebView;
 
+import com.maogousoft.ytwebview.Pullable;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,7 +23,7 @@ import java.util.Map.Entry;
  *
  * @author Toby
  */
-public class SafeWebView extends WebView {
+public class SafeWebView extends WebView implements Pullable {
     private static final boolean DEBUG = false;
     private static final String VAR_ARG_PREFIX = "arg";
     private static final String MSG_PROMPT_HEADER = "MyApp:";
@@ -97,7 +99,7 @@ public class SafeWebView extends WebView {
     /**
      * 若要删除JavaScript，请调用该方法
      * 注意：切记不要调用RemoveJavaScriptInterface，否则会有异常
-     * <p>
+     * <p/>
      * 原因：
      * Android 2.x的RemoveJavaScriptInterface不能直接访问，必须通过反射，更不能用Super来调用。
      * 而恰好原来的代码就覆写了它，也就是说，那个系统的方法已经被彻底“覆盖”，永远没有调到的机会，自然也就不能删掉SearchBox了
@@ -384,4 +386,13 @@ public class SafeWebView extends WebView {
         return false;
     }
 
+    @Override
+    public boolean canPullDown() {
+        return true;
+    }
+
+    @Override
+    public boolean canPullUp() {
+        return false;
+    }
 }
