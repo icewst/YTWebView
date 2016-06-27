@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -72,7 +73,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     // 正在刷新的图标
     private View refreshingView;
     // 刷新结果图标
-    private View refreshStateImageView;
+    private ImageView refreshStateImageView;
     // 刷新结果：成功或失败
     private TextView refreshStateTextView;
 
@@ -279,7 +280,7 @@ public class PullToRefreshLayout extends RelativeLayout {
         refreshStateTextView = (TextView) refreshView
                 .findViewById(R.id.state_tv);
         refreshingView = refreshView.findViewById(R.id.refreshing_icon);
-        refreshStateImageView = refreshView.findViewById(R.id.state_iv);
+        refreshStateImageView = (ImageView) refreshView.findViewById(R.id.state_iv);
     }
 
     @Override
@@ -380,7 +381,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 refreshStateImageView.setVisibility(View.VISIBLE);
                 refreshStateTextView.setText(R.string.refresh_succeed);
                 refreshStateImageView
-                        .setBackgroundResource(R.mipmap.refresh_succeed);
+                        .setImageResource(R.mipmap.refresh_succeed);
                 break;
             case FAIL:
             default:
@@ -388,7 +389,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 refreshStateImageView.setVisibility(View.VISIBLE);
                 refreshStateTextView.setText(R.string.refresh_fail);
                 refreshStateImageView
-                        .setBackgroundResource(R.mipmap.refresh_failed);
+                        .setImageResource(R.mipmap.refresh_failed);
                 break;
         }
         if (pullDownY > 0) {

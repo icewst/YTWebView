@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
                     public void handleMessage(Message msg) {
                         // 千万别忘了告诉控件刷新完毕了哦！
                         pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+                        //  pullToRefreshLayout.refreshFinish(PullToRefreshLayout.FAIL);
                     }
                 }.sendEmptyMessageDelayed(0, 3000);
             }
