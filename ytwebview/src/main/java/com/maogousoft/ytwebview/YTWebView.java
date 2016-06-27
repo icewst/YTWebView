@@ -11,7 +11,6 @@ import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
-import com.maogousoft.ytwebview.R;
 import com.maogousoft.ytwebview.view.PullToRefreshLayout;
 
 /**
