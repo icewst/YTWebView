@@ -1,4 +1,4 @@
-package com.maogousoft.ytwebview.view;
+package com.maogousoft.ytwebview;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
-import com.maogousoft.ytwebview.PullToRefreshLayout;
 import com.maogousoft.ytwebview.R;
+import com.maogousoft.ytwebview.view.PullToRefreshLayout;
 
 /**
  * 牙疼WebView

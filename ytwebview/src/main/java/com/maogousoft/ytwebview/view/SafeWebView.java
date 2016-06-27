@@ -101,8 +101,6 @@ public class SafeWebView extends WebView {
      * 原因：
      * Android 2.x的RemoveJavaScriptInterface不能直接访问，必须通过反射，更不能用Super来调用。
      * 而恰好原来的代码就覆写了它，也就是说，那个系统的方法已经被彻底“覆盖”，永远没有调到的机会，自然也就不能删掉SearchBox了
-     *
-     * @author Jiongxuan Zhang（修复Bug）
      */
     public void removeJsInterface(String interfaceName) {
         if (hasJellyBeanMR1()) {
@@ -121,12 +119,6 @@ public class SafeWebView extends WebView {
             return;
         }
         mJsInterfaceMap.put(interfaceName, obj);
-        // 如果在4.2以上，直接调用基类的方法来注册
-        //      if (hasJellyBeanMR1()) {
-        //          super.addJavascriptInterface(obj, interfaceName);
-        //      } else {
-        //          mJsInterfaceMap.put(interfaceName, obj);
-        //      }
         injectJavascriptInterfaces();
     }
 
