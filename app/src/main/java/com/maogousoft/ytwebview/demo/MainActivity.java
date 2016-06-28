@@ -19,22 +19,22 @@ public class MainActivity extends Activity {
 
         ytWebView = (YTWebView) findViewById(R.id.ytWebView);
 
-        ytWebView.getPullToRefreshLayout().setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
-
-                // 下拉刷新操作
-                new Handler() {
-                    @Override
-                    public void handleMessage(Message msg) {
-                        // 千万别忘了告诉控件刷新完毕了哦！
-                        pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
-                        //  pullToRefreshLayout.refreshFinish(PullToRefreshLayout.FAIL);
-                    }
-                }.sendEmptyMessageDelayed(0, 3000);
-            }
-        });
-
-        ytWebView.getWebView().loadUrl("https://www.baidu.com");
+//        ytWebView.getPullToRefreshLayout().setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh(final PullToRefreshLayout pullToRefreshLayout) {
+//
+//                // 下拉刷新操作
+//                new Handler() {
+//                    @Override
+//                    public void handleMessage(Message msg) {
+//                        // 千万别忘了告诉控件刷新完毕了哦！
+//                        pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+//                        //  pullToRefreshLayout.refreshFinish(PullToRefreshLayout.FAIL);
+//                    }
+//                }.sendEmptyMessageDelayed(0, 3000);
+//            }
+//        });
+//
+//        ytWebView.getWebView().loadUrl("https://www.baidu.com");
     }
 }

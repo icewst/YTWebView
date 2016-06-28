@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="60dp"
-                android:src="@mipmap/pull_icon_big" />
+                android:src="@mipmap/yt_webview_pull_up" />
 
             <ImageView
                 android:id="@+id/refreshing_icon"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="60dp"
-                android:src="@mipmap/refreshing"
+                android:src="@mipmap/yt_webview_refreshing"
                 android:visibility="gone" />
 
             <TextView

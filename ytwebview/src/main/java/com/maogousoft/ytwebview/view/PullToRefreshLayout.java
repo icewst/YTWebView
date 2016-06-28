@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.maogousoft.ytwebview.R;
+import com.maogousoft.ytwebview.interf.IOnRefreshWebViewListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -37,7 +38,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     // 当前状态
     private int state = INIT;
     // 刷新回调接口
-    private OnRefreshListener mListener;
+    private IOnRefreshWebViewListener mListener;
     // 刷新成功
     public static final int SUCCEED = 0;
     // 刷新失败
@@ -263,7 +264,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(REFRESHING);
                     // 刷新操作
                     if (mListener != null)
-                        mListener.onRefresh(this);
+                        mListener.onRefresh();
                 }
                 hide();
             default:
@@ -345,20 +346,8 @@ public class PullToRefreshLayout extends RelativeLayout {
         }
     }
 
-    /**
-     * 刷新加载回调接口
-     *
-     * @author chenjing
-     */
-    public interface OnRefreshListener {
-        /**
-         * 刷新操作
-         */
-        void onRefresh(PullToRefreshLayout pullToRefreshLayout);
-    }
 
-
-    public void setOnRefreshListener(OnRefreshListener listener) {
+    public void setOnRefreshListener(IOnRefreshWebViewListener listener) {
         mListener = listener;
     }
 
@@ -381,7 +370,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 refreshStateImageView.setVisibility(View.VISIBLE);
                 refreshStateTextView.setText(R.string.refresh_succeed);
                 refreshStateImageView
-                        .setImageResource(R.mipmap.refresh_succeed);
+                        .setImageResource(R.mipmap.yt_webview_refresh_suc);
                 break;
             case FAIL:
             default:
@@ -389,7 +378,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 refreshStateImageView.setVisibility(View.VISIBLE);
                 refreshStateTextView.setText(R.string.refresh_fail);
                 refreshStateImageView
-                        .setImageResource(R.mipmap.refresh_failed);
+                        .setImageResource(R.mipmap.yt_webview_refresh_fail);
                 break;
         }
         if (pullDownY > 0) {

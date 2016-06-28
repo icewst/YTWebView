@@ -11,6 +11,7 @@ import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
+import com.maogousoft.ytwebview.interf.IOnRefreshWebViewListener;
 import com.maogousoft.ytwebview.view.PullToRefreshLayout;
 
 /**
@@ -57,11 +58,44 @@ public class YTWebView extends RelativeLayout {
         });
     }
 
-    public WebView getWebView() {
-        return webView;
+    /**
+     * 设置刷新成功
+     */
+    public void setRefreshSuccess() {
+
     }
 
-    public PullToRefreshLayout getPullToRefreshLayout() {
-        return pullToRefreshLayout;
+    /**
+     * 设置刷新失败
+     */
+    public void setRefreshFail() {
+
+    }
+
+    /**
+     * 设置刷新是否启用
+     *
+     * @param isEnable
+     */
+    public void setRefreshEnable(boolean isEnable) {
+
+    }
+
+    /**
+     * 设置刷新中回调
+     *
+     * @param listener
+     */
+    public void setOnRefreshWebViewListener(IOnRefreshWebViewListener listener) {
+        pullToRefreshLayout.setOnRefreshListener(listener);
+    }
+
+    /**
+     * 获取WebView
+     *
+     * @return
+     */
+    public WebView getWebView() {
+        return webView;
     }
 }
