@@ -1,13 +1,10 @@
 package com.maogousoft.ytwebview;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
@@ -27,7 +24,7 @@ public class YTWebView extends RelativeLayout {
     /**
      * 安全WebView
      */
-    private SafeWebView webView;
+    private WebView webView;
     /**
      * 下拉刷新View
      */
@@ -55,7 +52,7 @@ public class YTWebView extends RelativeLayout {
         ctx = context;
         LayoutInflater.from(context).inflate(R.layout.yt_webview_layout, this);
         refreshView = (PullToRefreshView) findViewById(R.id.refresh_view);
-        webView = (SafeWebView) findViewById(R.id.safe_webview);
+        webView = (WebView) findViewById(R.id.safe_webview);
     }
 
     /**

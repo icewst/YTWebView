@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.webkit.JsPromptResult;
 import android.webkit.WebView;
 
+import com.maogousoft.ytwebview.interf.Pullable;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,7 +23,7 @@ import java.util.Map.Entry;
  *
  * @author Toby
  */
-public class SafeWebView extends WebView {
+public class SafeWebView extends WebView implements Pullable {
     private static final boolean DEBUG = false;
     private static final String VAR_ARG_PREFIX = "arg";
     private static final String MSG_PROMPT_HEADER = "MyApp:";
@@ -374,5 +376,14 @@ public class SafeWebView extends WebView {
             }
         }
         return false;
+    }
+
+
+    @Override
+    public boolean canPullDown() {
+        if (getScrollY() == 0)
+            return true;
+        else
+            return false;
     }
 }

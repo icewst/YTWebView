@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.maogousoft.ytwebview.R;
 import com.maogousoft.ytwebview.interf.OnRefreshWebViewListener;
+import com.maogousoft.ytwebview.interf.Pullable;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -212,7 +213,10 @@ public class PullToRefreshView extends RelativeLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mEvents == 0) {
-                    if (pullDownY > 0 || canPullDown) {
+                    if (pullDownY > 0
+                            || (((Pullable) pullableView).canPullDown()
+                            && canPullDown)) {
+
                         // 对实际滑动距离做缩小，造成用力拉的感觉
                         pullDownY = pullDownY + (ev.getY() - lastY) / radio;
                         if (pullDownY < 0) {
