@@ -1,7 +1,11 @@
 package com.maogousoft.ytwebview.interf;
 
-
-public interface IOnRefreshWebViewListener {
+/**
+ * 刷新接口
+ *
+ * @author Toby
+ */
+public interface OnRefreshWebViewListener {
     /**
      * 刷新操作
      */

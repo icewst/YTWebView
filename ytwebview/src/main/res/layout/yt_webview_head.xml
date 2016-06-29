@@ -3,7 +3,7 @@
     android:id="@+id/head_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cfd0d1">
+    android:background="#e4e5e6">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/pull_to_refresh"
+                android:text="@string/yt_webview_pull_to_refresh"
                 android:textColor="#191919"
                 android:textSize="14sp" />
 

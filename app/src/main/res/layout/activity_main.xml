@@ -11,6 +11,5 @@
     <com.maogousoft.ytwebview.YTWebView
         android:id="@+id/ytWebView"
         android:layout_width="match_parent"
-        android:background="#123123"
         android:layout_height="match_parent"></com.maogousoft.ytwebview.YTWebView>
 </RelativeLayout>

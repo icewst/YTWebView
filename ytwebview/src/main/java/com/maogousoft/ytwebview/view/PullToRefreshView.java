@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.maogousoft.ytwebview.R;
-import com.maogousoft.ytwebview.interf.IOnRefreshWebViewListener;
+import com.maogousoft.ytwebview.interf.OnRefreshWebViewListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,8 +25,7 @@ import java.util.TimerTask;
 /**
  * 自定义的布局，用来管理二个子控件，其中一个是下拉头，一个是包含内容的pullableView（可以是实现Pullable接口的的任何View），
  */
-public class PullToRefreshLayout extends RelativeLayout {
-    public static final String TAG = "PullToRefreshLayout";
+public class PullToRefreshView extends RelativeLayout {
     // 初始状态
     public static final int INIT = 0;
     // 释放刷新
@@ -38,7 +37,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     // 当前状态
     private int state = INIT;
     // 刷新回调接口
-    private IOnRefreshWebViewListener mListener;
+    private OnRefreshWebViewListener mListener;
     // 刷新成功
     public static final int SUCCEED = 0;
     // 刷新失败
@@ -124,17 +123,17 @@ public class PullToRefreshLayout extends RelativeLayout {
 
     };
 
-    public PullToRefreshLayout(Context context) {
+    public PullToRefreshView(Context context) {
         super(context);
         initView(context);
     }
 
-    public PullToRefreshLayout(Context context, AttributeSet attrs) {
+    public PullToRefreshView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
 
-    public PullToRefreshLayout(Context context, AttributeSet attrs, int defStyle) {
+    public PullToRefreshView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initView(context);
     }
@@ -161,13 +160,13 @@ public class PullToRefreshLayout extends RelativeLayout {
             case INIT:
                 // 下拉布局初始状态
                 refreshStateImageView.setVisibility(View.GONE);
-                refreshStateTextView.setText(R.string.pull_to_refresh);
+                refreshStateTextView.setText(R.string.yt_webview_pull_to_refresh);
                 pullView.clearAnimation();
                 pullView.setVisibility(View.VISIBLE);
                 break;
             case RELEASE_TO_REFRESH:
                 // 释放刷新状态
-                refreshStateTextView.setText(R.string.release_to_refresh);
+                refreshStateTextView.setText(R.string.yt_webview_release_to_refresh);
                 pullView.startAnimation(rotateAnimation);
                 break;
             case REFRESHING:
@@ -176,7 +175,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 refreshingView.setVisibility(View.VISIBLE);
                 pullView.setVisibility(View.INVISIBLE);
                 refreshingView.startAnimation(refreshingAnimation);
-                refreshStateTextView.setText(R.string.refreshing);
+                refreshStateTextView.setText(R.string.yt_webview_refreshing);
                 break;
             case DONE:
                 // 刷新或加载完毕，啥都不做
@@ -347,7 +346,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     }
 
 
-    public void setOnRefreshListener(IOnRefreshWebViewListener listener) {
+    public void setOnRefreshListener(OnRefreshWebViewListener listener) {
         mListener = listener;
     }
 
@@ -368,7 +367,7 @@ public class PullToRefreshLayout extends RelativeLayout {
             case SUCCEED:
                 // 刷新成功
                 refreshStateImageView.setVisibility(View.VISIBLE);
-                refreshStateTextView.setText(R.string.refresh_succeed);
+                refreshStateTextView.setText(R.string.yt_webview_refresh_success);
                 refreshStateImageView
                         .setImageResource(R.mipmap.yt_webview_refresh_suc);
                 break;
@@ -376,7 +375,7 @@ public class PullToRefreshLayout extends RelativeLayout {
             default:
                 // 刷新失败
                 refreshStateImageView.setVisibility(View.VISIBLE);
-                refreshStateTextView.setText(R.string.refresh_fail);
+                refreshStateTextView.setText(R.string.yt_webview_refresh_fail);
                 refreshStateImageView
                         .setImageResource(R.mipmap.yt_webview_refresh_fail);
                 break;

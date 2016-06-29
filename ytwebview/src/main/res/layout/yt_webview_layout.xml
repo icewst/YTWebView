@@ -1,4 +1,4 @@
-<com.maogousoft.ytwebview.view.PullToRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.maogousoft.ytwebview.view.PullToRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/refresh_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,8 +7,8 @@
     <!-- 支持所有实现Pullable接口的View -->
 
     <com.maogousoft.ytwebview.view.SafeWebView
-        android:id="@+id/sWebView"
+        android:id="@+id/safe_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</com.maogousoft.ytwebview.view.PullToRefreshLayout>
+</com.maogousoft.ytwebview.view.PullToRefreshView>
