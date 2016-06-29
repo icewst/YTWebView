@@ -24,7 +24,7 @@ public class YTWebView extends RelativeLayout {
     /**
      * 安全WebView
      */
-    private WebView webView;
+    private SafeWebView webView;
     /**
      * 下拉刷新View
      */
@@ -52,7 +52,7 @@ public class YTWebView extends RelativeLayout {
         ctx = context;
         LayoutInflater.from(context).inflate(R.layout.yt_webview_layout, this);
         refreshView = (PullToRefreshView) findViewById(R.id.refresh_view);
-        webView = (WebView) findViewById(R.id.safe_webview);
+        webView = (SafeWebView) findViewById(R.id.safe_webview);
     }
 
     /**
