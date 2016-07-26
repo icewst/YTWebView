@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import com.maogousoft.ytwebview.YTWebView;
 import com.maogousoft.ytwebview.interf.OnRefreshWebViewListener;
@@ -35,5 +37,19 @@ public class MainActivity extends Activity {
         });
 
         ytWebView.getWebView().loadUrl("http://www.baidu.com");
+
+
+        ToggleButton tb = (ToggleButton) findViewById(R.id.tb);
+        tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    ytWebView.setRefreshEnable(true);
+                } else {
+                    ytWebView.setRefreshEnable(false);
+                }
+            }
+        });
+        tb.setChecked(true);
     }
 }

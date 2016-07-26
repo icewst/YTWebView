@@ -125,7 +125,7 @@ public class YTWebView extends RelativeLayout {
      * @param isEnable
      */
     public void setRefreshEnable(boolean isEnable) {
-        refreshView.setCanPullDown(isEnable);
+        webView.setCanPullDown(isEnable);
     }
 
     /**

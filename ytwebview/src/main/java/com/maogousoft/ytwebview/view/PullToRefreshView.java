@@ -82,7 +82,7 @@ public class PullToRefreshView extends RelativeLayout {
     private View pullableView;
     // 过滤多点触碰
     private int mEvents;
-    // 这两个变量用来控制pull的方向，如果不加控制，当情况满足可上拉又可下拉时没法下拉
+    // 这个变量，仅仅是用于本类使用(不要修改它的值，如果要限制开启下拉，请使用SafeWebView里面的)
     private boolean canPullDown = true;
 
     /**
@@ -184,13 +184,6 @@ public class PullToRefreshView extends RelativeLayout {
         }
     }
 
-    /**
-     * 不限制上拉或下拉
-     */
-    private void releasePull() {
-        canPullDown = true;
-    }
-
     /*
      * （非 Javadoc）由父控件决定是否分发事件，防止事件冲突
      *
@@ -204,7 +197,7 @@ public class PullToRefreshView extends RelativeLayout {
                 lastY = downY;
                 timer.cancel();
                 mEvents = 0;
-                releasePull();
+                canPullDown = true;
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
             case MotionEvent.ACTION_POINTER_UP:
@@ -230,7 +223,7 @@ public class PullToRefreshView extends RelativeLayout {
                             isTouch = true;
                         }
                     } else
-                        releasePull();
+                        canPullDown = true;
                 } else
                     mEvents = 0;
                 lastY = ev.getY();
@@ -352,10 +345,6 @@ public class PullToRefreshView extends RelativeLayout {
 
     public void setOnRefreshListener(OnRefreshWebViewListener listener) {
         mListener = listener;
-    }
-
-    public void setCanPullDown(boolean canPullDown) {
-        this.canPullDown = canPullDown;
     }
 
     /**
