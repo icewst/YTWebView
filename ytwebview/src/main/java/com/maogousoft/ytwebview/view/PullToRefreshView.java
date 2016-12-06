@@ -206,35 +206,35 @@ public class PullToRefreshView extends RelativeLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mEvents == 0) {
-                    if (pullDownY > 0
-                            || (((Pullable) pullableView).canPullDown()
-                            && canPullDown)) {
-
+                    if (pullDownY > 0 || (((Pullable) pullableView).canPullDown() && canPullDown)) {
                         // 对实际滑动距离做缩小，造成用力拉的感觉
                         pullDownY = pullDownY + (ev.getY() - lastY) / radio;
                         if (pullDownY < 0) {
                             pullDownY = 0;
                             canPullDown = false;
                         }
-                        if (pullDownY > getMeasuredHeight())
+                        if (pullDownY > getMeasuredHeight()) {
                             pullDownY = getMeasuredHeight();
+                        }
                         if (state == REFRESHING) {
                             // 正在刷新的时候触摸移动
                             isTouch = true;
                         }
-                    } else
+                    } else {
                         canPullDown = true;
-                } else
+                    }
+                } else {
                     mEvents = 0;
+                }
                 lastY = ev.getY();
                 // 根据下拉距离改变比例
                 radio = (float) (2 + 2 * Math.tan(Math.PI / 2 / getMeasuredHeight()
                         * (pullDownY)));
-                if (pullDownY > 0)
-                    requestLayout();
                 if (pullDownY > 0) {
-                    if (pullDownY <= refreshDist
-                            && (state == RELEASE_TO_REFRESH || state == DONE)) {
+                    requestLayout();
+                }
+                if (pullDownY > 0) {
+                    if (pullDownY <= refreshDist && (state == RELEASE_TO_REFRESH || state == DONE)) {
                         // 如果下拉距离没达到刷新的距离且当前状态是释放刷新，改变状态为下拉刷新
                         changeState(INIT);
                     }
